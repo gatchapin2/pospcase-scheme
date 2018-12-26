@@ -1,0 +1,24 @@
+#+TITLE: ~Pospcase~ extension for Scheme
+#+AUTHOR: gatchapin
+#+EMAIL: (cl-loop for c across "gfaxtscdhfajpyieny@sgpmqxd.ucyodmx" count t into i if (oddp i) concat (string c))
+
+* About
+  An example implementation of pospcase-font-lock extension for
+  ~scheme-mode~.
+
+* How to Activate
+  Add the following code to your init file:
+
+  #+BEGIN_SRC emacs-lisp
+    (add-hook 'after-init-hook
+              (lambda ()
+                (add-to-list 'load-path "/path/to/pospcase-scheme") ; edit the path appropriately
+                (require 'pospcase-scheme)
+                (pospcase-font-lock-scheme-setup)))
+  #+END_SRC
+
+  Highlighting will be active for every future Emacs session.
+
+  If you want to activate the highlighting immediately, evaluate every
+  expression in the lambda clause of the above code.
+
