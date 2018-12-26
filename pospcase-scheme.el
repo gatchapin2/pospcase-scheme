@@ -23,6 +23,7 @@ a symbol too."
    limit))
 
 (add-to-list 'pospcase-defstruct-group 'scheme-define)
+(add-to-list 'pospcase--elispify-alist '("#[ft]" . " t"))
 
 (defun pospcase-font-lock-scheme-setup ()
   "Enable `pospcase' code highlighting for `scheme-mode'."
@@ -35,7 +36,8 @@ a symbol too."
   (pospcase-font-lock 'scheme-mode
                       '(`(let ,binds . ,_)
                         `(let* ,binds . ,_)
-                        `(letrec ,binds . ,_))
+                        `(letrec ,binds . ,_)
+                        `(letrec* ,binds . ,_))
                       '((heading-keyword . (font-lock-keyword-face))
                         ((binds . list/1) . (font-lock-variable-name-face))))
   (add-hook 'scheme-mode-hook #'pospcase-font-lock-scheme-keywords-add))
