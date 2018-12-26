@@ -48,6 +48,11 @@ a symbol too."
                         `(letrec* ,binds . ,_))
                       '((heading-keyword . (font-lock-keyword-face))
                         ((binds . list/1) . (font-lock-variable-name-face))))
+  (pospcase-font-lock 'scheme-mode
+                      '(`(let ,(and (pred symbolp) name) ,binds . ,_))
+                      '((heading-keyword . (font-lock-keyword-face))
+                        (name . (font-lock-function-name-face))
+                        ((binds . list/1) . (font-lock-variable-name-face))))
   (add-hook 'scheme-mode-hook #'pospcase-font-lock-scheme-keywords-add))
 
 (provide 'pospcase-scheme)
