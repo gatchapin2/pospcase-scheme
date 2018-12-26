@@ -25,7 +25,7 @@ a symbol too."
 (unless (memq 'scheme-define pospcase-defstruct-group)
   (add-to-list 'pospcase-defstruct-group 'scheme-define))
 
-(let ((bools '("#[ft]" . " t")))
+(let ((bools '("#[ft]\\_>" . " t")))
   (unless (member bools pospcase--elispify-alist)
     (add-to-list 'pospcase--elispify-alist bools)))
 
