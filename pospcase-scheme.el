@@ -32,7 +32,7 @@ a symbol too."
                       '((heading-keyword . (font-lock-keyword-face))
                         (name . (font-lock-function-name-face))
                         ((args . scheme-define) . (font-lock-variable-name-face))))
-  (pospcase-font-lock 'lisp-mode
+  (pospcase-font-lock 'scheme-mode
                       '(`(let ,binds . ,_)
                         `(let* ,binds . ,_)
                         `(letrec ,binds . ,_))
