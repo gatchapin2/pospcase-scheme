@@ -70,7 +70,7 @@ a symbol too."
                       '((heading-keyword . (font-lock-keyword-face))
                         ((args . scheme-lambda) . (font-lock-variable-name-face))))
   (pospcase-font-lock 'scheme-mode
-                      '(`(lambda ,(and (pred symbolp) arg) . ,_))
+                      '(`(lambda ,(and (pred symbolp) (pred identity) arg) . ,_))
                       '((heading-keyword . (font-lock-keyword-face))
                         (arg . (font-lock-variable-name-face))))
   (pospcase-font-lock 'scheme-mode
