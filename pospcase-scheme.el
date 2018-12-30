@@ -45,8 +45,13 @@ a symbol too."
             finally return result)
    limit))
 
+(defalias #'pospcase-match-scheme-lambda #'pospcase-match-scheme-define)
+
 (unless (memq 'scheme-define pospcase-defstruct-group)
   (add-to-list 'pospcase-defstruct-group 'scheme-define))
+
+(unless (memq 'scheme-lambda pospcase-list-group)
+  (add-to-list 'pospcase-list-group 'scheme-lambda))
 
 (let ((bools '("#[ft]\\_>" . " t")))
   (unless (member bools pospcase--elispify-alist)
@@ -61,9 +66,13 @@ a symbol too."
                         (name . (font-lock-function-name-face))
                         ((args . scheme-define) . (font-lock-variable-name-face))))
   (pospcase-font-lock 'scheme-mode
-                      '(`(lambda (,arg . ,_) . ,_))
+                      '(`(lambda ,(and (pred consp) args) . ,_))
                       '((heading-keyword . (font-lock-keyword-face))
-                        ((arg . scheme-define) . (font-lock-variable-name-face))))
+                        ((args . scheme-lambda) . (font-lock-variable-name-face))))
+  (pospcase-font-lock 'scheme-mode
+                      '(`(lambda ,(and (pred symbolp) arg) . ,_))
+                      '((heading-keyword . (font-lock-keyword-face))
+                        (arg . (font-lock-variable-name-face))))
   (pospcase-font-lock 'scheme-mode
                       '(`(let ,binds . ,_)
                         `(let* ,binds . ,_)
