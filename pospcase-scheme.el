@@ -29,12 +29,12 @@ a symbol too."
   (pospcase--call-iterator
    (cl-loop with result
             for exp on (if pospcase--fence-start
-                           (cl-loop for temp on (car (pospcase-read (point)))
+                           (cl-loop for temp on (car (pospcase-read (point) 0))
                                     if (equal temp pospcase--fence-start)
                                     return (list temp)
                                     if (equal (car temp) pospcase--fence-start)
                                     return temp)
-                           (car (pospcase-read (point))))
+                         (car (pospcase-read (point) 0)))
             if (and (numberp (car (cdr exp)))
                     (numberp (cdr (cdr exp))))
             return (append result
